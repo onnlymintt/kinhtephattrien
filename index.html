@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài liệu Kinh tế phát triển</title>
+    <style>
+        /* --- Cài đặt cơ bản --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; background-color: #f8f9fa; }
+
+        /* --- LỚP 1: VỎ BỌC MÔN HỌC --- */
+        #fake-page {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #333;
+        }
+        .folder-btn {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.2s;
+        }
+        .folder-btn:hover { background-color: #0b5ed7; }
+
+        /* --- LỚP 2: GIAO DIỆN THẬT --- */
+        #real-page {
+            display: none; /* Ẩn đi lúc đầu */
+            height: 100vh;
+            background-color: #fff0f5; /* Trắng hồng cute */
+            color: #d1495b; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        h1 { 
+            font-size: 2.8rem; 
+            margin-bottom: 15px; 
+            text-shadow: 2px 2px 4px rgba(209, 73, 91, 0.15); 
+            z-index: 2;
+        }
+
+        /* Khung ảnh kiểu Polaroid cute */
+        .photo-frame {
+            background: white;
+            padding: 10px 10px 25px 10px;
+            border-radius: 4px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            margin-bottom: 20px;
+            z-index: 2;
+            transition: transform 0.3s;
+        }
+        .photo-frame:hover {
+            transform: rotate(2deg) scale(1.05);
+        }
+        .photo-frame img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        /* Hộp lời chúc */
+        .message-box {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 15px 25px;
+            border-radius: 15px;
+            max-width: 400px;
+            margin-bottom: 20px;
+            border: 2px dashed #ffb3c6;
+            z-index: 2;
+        }
+        .message-box p {
+            font-size: 1.1rem;
+            color: #c9184a;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        p.invite { font-size: 1.5rem; margin-bottom: 20px; color: #ff4d6d; font-weight: bold; z-index: 2; }
+        
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            z-index: 2;
+        }
+        .btn {
+            padding: 12px 40px;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        /* Nút Yes */
+        #btn-yes { 
+            background-color: #ffb3c6; 
+            color: #fff; 
+            box-shadow: 0 4px 10px rgba(255, 179, 198, 0.6); 
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        #btn-yes:hover { 
+            transform: scale(1.1); 
+            background-color: #ff8fab; 
+        }
+        
+        /* Nút No có thể di chuyển trên TOÀN MÀN HÌNH */
+        #btn-no { 
+            background-color: #e0e0e0; 
+            color: #666; 
+            position: relative; /* Sẽ đổi thành fixed khi bị hover */
+            transition: left 0.3s ease, top 0.3s ease; 
+        }
+
+        /* Hiệu ứng vật thể rơi (Trái tim/Hoa) */
+        .falling-item {
+            position: absolute;
+            top: -10vh;
+            font-size: 24px;
+            animation: fall linear forwards;
+            z-index: 1;
+            user-select: none;
+            pointer-events: none; /* Không cản trở việc click chuột */
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- VỎ BỌC GIẢ -->
+    <div id="fake-page">
+        <h2 style="margin-bottom: 10px;">Lưu trữ tài liệu học tập ĐH</h2>
+        <p style="color: #666;">Học phần: Kinh tế phát triển (Mã HP: KTPT2026)</p>
+        <button class="folder-btn" onclick="revealSurprise()">📂 Tải về: Slide_Tong_Hop_Cuoi_Ky.pdf</button>
+    </div>
+
+    <!-- NỘI DUNG THẬT -->
+    <div id="real-page">
+        <h1>🎉 Happy Birthday Hà Trang! 🎉</h1>
+        
+        <!-- CHỖ ĐỂ ẢNH CUTE / DÌM HÀNG -->
+        <div class="photo-frame">
+            <!-- SỬA LINK ẢNH Ở ĐÂY: Thay src="..." bằng link ảnh thật của Hà Trang -->
+            <img src="https://www.facebook.com/photo/?fbid=2295564967571798&set=pob.100013549505298" alt="Ảnh Hà Trang">
+        </div>
+
+        <!-- CHỖ GHI LỜI CHÚC -->
+        <div class="message-box">
+            <p>"Á nhon bà dà, chúc bà tuổi mới thêm nhiều tiền, nhiều trải nghiệm, được đi nhiều nơi và học được nhiều điều; và có những người yêu thương bà thật lòng nhé 🌸✨"</p>
+        </div>
+
+        <p class="invite">Đi cà phê hongggg? ☕🍰</p>
+        
+        <div class="btn-container">
+            <button class="btn" id="btn-yes" onclick="alert('Chốt deal nha! Lên đồ lẹ đi fen 💖')">Yes</button>
+            <button class="btn" id="btn-no">No</button>
+        </div>
+    </div>
+
+    <script>
+        let heartInterval;
+
+        // Hàm chuyển đổi giao diện & Kích hoạt hiệu ứng
+        function revealSurprise() {
+            document.getElementById('fake-page').style.display = 'none';
+            document.getElementById('real-page').style.display = 'flex';
+            document.body.style.backgroundColor = '#fff0f5';
+            document.title = "Happy Birthday! 🎂"; 
+            
+            // Bắt đầu thả tim
+            heartInterval = setInterval(createFallingItem, 300);
+        }
+
+        // Logic tạo trái tim/hoa rơi
+        const items = ['💖', '🌸', '✨', '🎂', '🌷'];
+        function createFallingItem() {
+            const item = document.createElement('div');
+            item.classList.add('falling-item');
+            
+            // Random icon, vị trí và thời gian rơi
+            item.innerText = items[Math.floor(Math.random() * items.length)];
+            item.style.left = Math.random() * 100 + 'vw';
+            item.style.animationDuration = Math.random() * 3 + 3 + 's'; // Rơi từ 3-6s
+            
+            document.getElementById('real-page').appendChild(item);
+            
+            // Xóa item sau khi rơi xong để không bị nặng máy
+            setTimeout(() => { item.remove(); }, 6000);
+        }
+
+        // Logic né chuột của nút No vô cực
+        const btnNo = document.getElementById('btn-no');
+        
+        btnNo.addEventListener('mouseover', function() {
+            // Khi chuột vừa chạm vào, chuyển nút sang trạng thái fixed (bay lơ lửng trên toàn màn hình)
+            btnNo.style.position = 'fixed';
+            
+            // Lấy kích thước cửa sổ trừ đi kích thước nút để nút không văng ra ngoài mép
+            const safeWidth = window.innerWidth - btnNo.offsetWidth - 20;
+            const safeHeight = window.innerHeight - btnNo.offsetHeight - 20;
+
+            const randomX = Math.max(10, Math.floor(Math.random() * safeWidth));
+            const randomY = Math.max(10, Math.floor(Math.random() * safeHeight));
+
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        });
+    </script>
+</body>
+</html>
