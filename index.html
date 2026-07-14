@@ -3,218 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tài liệu Kinh tế phát triển</title>
+    <title>Kinh-te-phat-trien-FTU/Thuyết minh môn học.md at main</title>
+    <!-- Import font chữ thư pháp và font cute -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pangolin&display=swap" rel="stylesheet">
     <style>
-        /* --- Cài đặt cơ bản --- */
+        /* --- CÀI ĐẶT CHUNG --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; background-color: #f8f9fa; }
+        body { overflow: hidden; background-color: #f6f8fa; }
 
-        /* --- LỚP 1: VỎ BỌC MÔN HỌC --- */
+        /* --- LỚP 1: GIAO DIỆN GITHUB GIẢ --- */
         #fake-page {
             height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            color: #24292f;
+        }
+        .gh-header {
+            background-color: #24292f;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+        }
+        .gh-search {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            padding: 5px 12px;
+            color: white;
+            font-size: 14px;
+            width: 300px;
+            margin-left: 16px;
+        }
+        .gh-body { padding: 24px; max-width: 1012px; margin: 0 auto; width: 100%; }
+        .gh-repo-title { font-size: 20px; color: #0969da; margin-bottom: 20px; font-weight: 600; }
+        .gh-file-box {
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            background: #ffffff;
+            margin-top: 16px;
+        }
+        .gh-file-header {
+            background-color: #f6f8fa;
+            padding: 12px 16px;
+            border-bottom: 1px solid #d0d7de;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .gh-file-content { padding: 40px; font-size: 16px; }
+        .gh-link {
+            color: #0969da;
+            text-decoration: none;
+            cursor: pointer;
+            font-family: monospace;
+            font-size: 16px;
+        }
+        .gh-link:hover { text-decoration: underline; }
+
+        /* --- LỚP 2: GIAO DIỆN THẬT (THIỆP + POLAROID) --- */
+        #real-page {
+            display: none; 
+            height: 100vh;
+            background: url('https://www.transparenttextures.com/patterns/cream-paper.png'), radial-gradient(circle at center, #fff5f7 0%, #ffe3e9 100%);
+            font-family: 'Pangolin', cursive;
+            display: none; /* Sẽ đổi thành flex khi click */
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        /* KHUNG THIỆP BÊN TRÁI */
+        .greeting-card {
+            background: #fdfbf7;
+            border: 8px double #e8d5c4;
+            border-radius: 15px;
+            padding: 40px 30px;
+            width: 400px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1), inset 0 0 20px rgba(0,0,0,0.02);
+            text-align: center;
+            z-index: 5;
+            position: relative;
+        }
+        .greeting-card h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #b5835a;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+        .greeting-card p {
+            font-size: 1.3rem;
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
+
+        /* KHUNG POLAROID BÊN PHẢI */
+        .right-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #333;
+            z-index: 5;
         }
-        .folder-btn {
-            margin-top: 20px;
-            padding: 12px 24px;
-            font-size: 1.1rem;
-            background-color: #0d6efd;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: background-color 0.2s;
-        }
-        .folder-btn:hover { background-color: #0b5ed7; }
-
-        /* --- LỚP 2: GIAO DIỆN THẬT --- */
-        #real-page {
-            display: none; /* Ẩn đi lúc đầu */
-            height: 100vh;
-            background-color: #fff0f5; /* Trắng hồng cute */
-            color: #d1495b; 
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-        
-        h1 { 
-            font-size: 2.8rem; 
-            margin-bottom: 15px; 
-            text-shadow: 2px 2px 4px rgba(209, 73, 91, 0.15); 
-            z-index: 2;
-        }
-
-        /* Khung ảnh kiểu Polaroid cute */
-        .photo-frame {
+        .polaroid {
             background: white;
-            padding: 10px 10px 25px 10px;
-            border-radius: 4px;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-            transform: rotate(-3deg);
-            margin-bottom: 20px;
-            z-index: 2;
-            transition: transform 0.3s;
+            padding: 15px 15px 40px 15px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.15), 0 5px 10px rgba(0,0,0,0.05);
+            transform: rotate(2deg);
+            position: relative;
+            margin-bottom: 30px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .photo-frame:hover {
-            transform: rotate(2deg) scale(1.05);
-        }
-        .photo-frame img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 2px;
-        }
-
-        /* Hộp lời chúc */
-        .message-box {
-            background-color: rgba(255, 255, 255, 0.7);
-            padding: 15px 25px;
-            border-radius: 15px;
-            max-width: 400px;
-            margin-bottom: 20px;
-            border: 2px dashed #ffb3c6;
-            z-index: 2;
-        }
-        .message-box p {
-            font-size: 1.1rem;
-            color: #c9184a;
-            line-height: 1.5;
-            font-style: italic;
-        }
-
-        p.invite { font-size: 1.5rem; margin-bottom: 20px; color: #ff4d6d; font-weight: bold; z-index: 2; }
+        .polaroid:hover { transform: rotate(0deg) scale(1.03); }
         
+        .tape {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 120px;
+            height: 35px;
+            background-color: rgba(244, 164, 179, 0.6);
+            border: 1px dashed rgba(255, 255, 255, 0.5);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 6;
+        }
+
+        .polaroid img {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+
+        .invite-text {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+            max-width: 400px;
+            line-height: 1.4;
+        }
+
+        /* NÚT BẤM 3D */
         .btn-container {
             display: flex;
             gap: 20px;
-            z-index: 2;
+            position: relative;
+            width: 100%;
+            justify-content: center;
+            height: 60px;
         }
         .btn {
-            padding: 12px 40px;
-            font-size: 1.3rem;
+            font-family: 'Pangolin', cursive;
+            font-size: 1.2rem;
+            padding: 12px 30px;
             border: none;
-            border-radius: 50px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
+            transition: all 0.1s;
         }
-        /* Nút Yes */
-        #btn-yes { 
-            background-color: #ffb3c6; 
-            color: #fff; 
-            box-shadow: 0 4px 10px rgba(255, 179, 198, 0.6); 
-            transition: transform 0.2s, background-color 0.2s;
+        #btn-yes {
+            background-color: #ff7b9c;
+            color: white;
+            box-shadow: 0 6px 0 #d95374, 0 10px 15px rgba(0,0,0,0.1);
         }
-        #btn-yes:hover { 
-            transform: scale(1.1); 
-            background-color: #ff8fab; 
+        #btn-yes:active {
+            transform: translateY(6px);
+            box-shadow: 0 0 0 #d95374, 0 2px 5px rgba(0,0,0,0.1);
         }
-        
-        /* Nút No có thể di chuyển trên TOÀN MÀN HÌNH */
-        #btn-no { 
-            background-color: #e0e0e0; 
-            color: #666; 
-            position: relative; /* Sẽ đổi thành fixed khi bị hover */
-            transition: left 0.3s ease, top 0.3s ease; 
+        #btn-no {
+            background-color: #a0a0a0;
+            color: white;
+            box-shadow: 0 6px 0 #7a7a7a, 0 10px 15px rgba(0,0,0,0.1);
+            position: absolute; 
         }
 
-        /* Hiệu ứng vật thể rơi (Trái tim/Hoa) */
+        /* HIỆU ỨNG TRANG TRÍ RƠI */
         .falling-item {
             position: absolute;
             top: -10vh;
-            font-size: 24px;
             animation: fall linear forwards;
-            z-index: 1;
+            z-index: 2;
             user-select: none;
-            pointer-events: none; /* Không cản trở việc click chuột */
+            pointer-events: none;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
         @keyframes fall {
-            to {
-                transform: translateY(110vh) rotate(360deg);
-            }
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* Responsive cho điện thoại (Chuyển thành 1 cột dọc) */
+        @media (max-width: 800px) {
+            #real-page { flex-direction: column; overflow-y: auto; justify-content: flex-start; padding-top: 50px; }
+            .greeting-card { width: 90%; margin-bottom: 30px; }
+            .polaroid { margin-bottom: 20px; }
+            .btn-container { margin-bottom: 50px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- VỎ BỌC GIẢ -->
+    <!-- LỚP 1: VỎ BỌC GITHUB -->
     <div id="fake-page">
-        <h2 style="margin-bottom: 10px;">Lưu trữ tài liệu học tập ĐH</h2>
-        <p style="color: #666;">Học phần: Kinh tế phát triển (Mã HP: KTPT2026)</p>
-        <button class="folder-btn" onclick="revealSurprise()">📂 Tải về: Slide_Tong_Hop_Cuoi_Ky.pdf</button>
+        <div class="gh-header">
+            <svg height="32" viewBox="0 0 16 16" version="1.1" width="32" fill="white">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+            </svg>
+            <div class="gh-search">Search or jump to...</div>
+        </div>
+        <div class="gh-body">
+            <div class="gh-repo-title">
+                📚 <span>Kinh-te-phat-trien-FTU</span>
+            </div>
+            <div style="font-size: 14px; color: #57606a;">
+                <span style="font-weight: 600;">master</span> / <strong>Thuyết minh môn học.md</strong>
+            </div>
+            <div class="gh-file-box">
+                <div class="gh-file-header">📄 Thuyết minh môn học.md</div>
+                <div class="gh-file-content">
+                    <a class="gh-link" onclick="revealSurprise(event)">=&gt; Nhấn vào đây để xem chi tiết nội dung chương trình học &amp; Đề tài bài tập lớn</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- NỘI DUNG THẬT -->
+    <!-- LỚP 2: NỘI DUNG THẬT -->
     <div id="real-page">
-        <h1>🎉 Happy Birthday Hà Trang! 🎉</h1>
         
-        <!-- CHỖ ĐỂ ẢNH CUTE / DÌM HÀNG -->
-        <div class="photo-frame">
-            <!-- SỬA LINK ẢNH Ở ĐÂY: Thay src="..." bằng link ảnh thật của Hà Trang -->
-            <img src="https://www.facebook.com/photo/?fbid=2295564967571798&set=pob.100013549505298" alt="Ảnh Hà Trang">
+        <!-- BÊN TRÁI: THIỆP CHÚC MỪNG -->
+        <div class="greeting-card">
+            <h1>Happy Birthday,<br>Hà Trang! ✨</h1>
+            <p>"á nhon bà dà, chúc bà tủi mới xinh đẹp, nhèo tèng, nhèo trải nghiệm và luôn có những người yêu thương bà thật lòng 🌸🍰"</p>
         </div>
 
-        <!-- CHỖ GHI LỜI CHÚC -->
-        <div class="message-box">
-            <p>"Á nhon bà dà, chúc bà tuổi mới thêm nhiều tiền, nhiều trải nghiệm, được đi nhiều nơi và học được nhiều điều; và có những người yêu thương bà thật lòng nhé 🌸✨"</p>
+        <!-- BÊN PHẢI: POLAROID & NÚT BẤM -->
+        <div class="right-section">
+            <div class="polaroid">
+                <div class="tape"></div>
+                <!-- SỬA LINK ẢNH Ở ĐÂY -->
+                <img src="https://i.pinimg.com/736x/21/df/b1/21dfb1b6016142721e0695014ea4ecfe.jpg" alt="Ảnh Hà Trang">
+            </div>
+
+            <div class="invite-text">
+                Thy mời Hà Chang 1 bủi cà phê nói chuyện xúng xính áo quần chụp ảnh, đi cùng Thy nhé? (•◡•)
+            </div>
+            
+            <div class="btn-container">
+                <button class="btn" id="btn-yes" onclick="alert('Đã chốt kèo! Lên đồ thôiii 💖')">Có (,,>﹏<,,)</button>
+                <button class="btn" id="btn-no">Không (•_•)</button>
+            </div>
         </div>
 
-        <p class="invite">Đi cà phê hongggg? ☕🍰</p>
-        
-        <div class="btn-container">
-            <button class="btn" id="btn-yes" onclick="alert('Chốt deal nha! Lên đồ lẹ đi fen 💖')">Yes</button>
-            <button class="btn" id="btn-no">No</button>
-        </div>
     </div>
 
     <script>
-        let heartInterval;
+        let effectInterval;
 
-        // Hàm chuyển đổi giao diện & Kích hoạt hiệu ứng
-        function revealSurprise() {
+        function revealSurprise(e) {
+            e.preventDefault(); 
             document.getElementById('fake-page').style.display = 'none';
+            // Dùng display flex để hiển thị bố cục 2 cột
             document.getElementById('real-page').style.display = 'flex';
-            document.body.style.backgroundColor = '#fff0f5';
-            document.title = "Happy Birthday! 🎂"; 
+            document.title = "Đi với tui nhé bà!!!"; 
             
-            // Bắt đầu thả tim
-            heartInterval = setInterval(createFallingItem, 300);
+            effectInterval = setInterval(createFallingItem, 400);
         }
 
-        // Logic tạo trái tim/hoa rơi
-        const items = ['💖', '🌸', '✨', '🎂', '🌷'];
+        // Tạo hiệu ứng rơi chân thực hơn (Cánh hoa, nơ, lấp lánh)
+        const items = ['🥀', '🎀', '✨', '🍂', '🌸'];
         function createFallingItem() {
             const item = document.createElement('div');
             item.classList.add('falling-item');
-            
-            // Random icon, vị trí và thời gian rơi
             item.innerText = items[Math.floor(Math.random() * items.length)];
+            
+            // Random kích thước từ 15px đến 30px
+            const size = Math.random() * 15 + 15; 
+            item.style.fontSize = size + 'px';
             item.style.left = Math.random() * 100 + 'vw';
-            item.style.animationDuration = Math.random() * 3 + 3 + 's'; // Rơi từ 3-6s
+            item.style.animationDuration = Math.random() * 4 + 4 + 's'; 
             
             document.getElementById('real-page').appendChild(item);
-            
-            // Xóa item sau khi rơi xong để không bị nặng máy
-            setTimeout(() => { item.remove(); }, 6000);
+            setTimeout(() => { item.remove(); }, 8000);
         }
 
-        // Logic né chuột của nút No vô cực
         const btnNo = document.getElementById('btn-no');
         
-        btnNo.addEventListener('mouseover', function() {
-            // Khi chuột vừa chạm vào, chuyển nút sang trạng thái fixed (bay lơ lửng trên toàn màn hình)
-            btnNo.style.position = 'fixed';
+        function moveButton() {
+            btnNo.style.position = 'fixed'; 
             
-            // Lấy kích thước cửa sổ trừ đi kích thước nút để nút không văng ra ngoài mép
             const safeWidth = window.innerWidth - btnNo.offsetWidth - 20;
             const safeHeight = window.innerHeight - btnNo.offsetHeight - 20;
 
@@ -223,7 +308,16 @@
 
             btnNo.style.left = randomX + 'px';
             btnNo.style.top = randomY + 'px';
-        });
+        }
+
+        btnNo.addEventListener('mouseover', moveButton);
+        
+        btnNo.addEventListener('touchstart', function(e) {
+            e.preventDefault(); 
+            moveButton();
+        }, {passive: false});
+
+        btnNo.addEventListener('focus', moveButton);
     </script>
 </body>
 </html>
