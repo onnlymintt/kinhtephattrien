@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kinh-te-phat-trien-FTU/Thuyết minh môn học.md at main</title>
-    <!-- Import font chữ Fredoka (Không chân, tròn, cute Y2K) -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Import font chữ Baloo 2 (Không chân, tròn béo, hỗ trợ tiếng Việt 100%) -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* --- CÀI ĐẶT CHUNG --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,7 +40,7 @@
                 linear-gradient(45deg, #e0bbf0 25%, transparent 25%, transparent 75%, #e0bbf0 75%, #e0bbf0);
             background-size: 60px 60px;
             background-position: 0 0, 30px 30px;
-            font-family: 'Fredoka', sans-serif; /* Font không chân */
+            font-family: 'Baloo 2', cursive, sans-serif; /* Đã đổi font mới */
             flex-direction: row;
             align-items: center;
             justify-content: center;
@@ -66,11 +66,12 @@
         .y2k-card h1 {
             font-size: 3rem;
             color: #ff1493; /* Deep Pink */
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             line-height: 1.2;
             text-transform: uppercase;
             text-shadow: 2px 2px 0px #000; /* Viền chữ đen */
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            font-weight: 800;
         }
         .y2k-card p {
             font-size: 1.3rem;
@@ -112,7 +113,7 @@
         }
 
         .invite-text {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #000;
             margin-bottom: 25px;
             font-weight: 700;
@@ -135,9 +136,9 @@
             height: 60px;
         }
         .btn {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Baloo 2', cursive, sans-serif; /* Đồng bộ font */
             font-size: 1.2rem;
-            padding: 12px 30px;
+            padding: 10px 30px;
             border: 3px solid #000;
             border-radius: 30px;
             cursor: pointer;
@@ -219,8 +220,6 @@
 
         <div class="y2k-photo">
             <div class="sticker">🦋</div>
-            <!-- ĐÃ CHÈN CHÍNH XÁC TÊN FILE BẠN UPLOAD LÊN GITHUB -->
-            <!-- Dùng %20 để thay thế cho khoảng trắng nhằm tránh lỗi đường dẫn -->
             <img src="fxn%202025-02-04%20160332.307.JPG" alt="Ảnh Hà Trang">
         </div>
     </div>
@@ -237,7 +236,6 @@
             effectInterval = setInterval(createFallingItem, 400);
         }
 
-        // Icon phong cách Y2K
         const items = ['💿', '🦋', '🌟', '🍒', '💖', '🎧'];
         function createFallingItem() {
             const item = document.createElement('div');
