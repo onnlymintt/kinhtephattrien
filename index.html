@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kinh-te-phat-trien-FTU/Thuyết minh môn học.md at main</title>
-    <!-- Import font chữ thư pháp và font cute -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pangolin&display=swap" rel="stylesheet">
+    <!-- Import font chữ kẹo ngọt từ Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <style>
         /* --- CÀI ĐẶT CHUNG --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -62,17 +62,19 @@
         }
         .gh-link:hover { text-decoration: underline; }
 
-        /* --- LỚP 2: GIAO DIỆN THẬT (THIỆP + POLAROID) --- */
+        /* --- LỚP 2: GIAO DIỆN THẬT (TRẮNG HỒNG PASTEL) --- */
         #real-page {
             display: none; 
             height: 100vh;
-            background: url('https://www.transparenttextures.com/patterns/cream-paper.png'), radial-gradient(circle at center, #fff5f7 0%, #ffe3e9 100%);
-            font-family: 'Pangolin', cursive;
-            display: none; /* Sẽ đổi thành flex khi click */
+            background-color: #ffffff; /* NỀN TRẮNG TINH */
+            /* Thêm chút họa tiết chấm bi hồng mờ nhạt cho bớt trống trải */
+            background-image: radial-gradient(#ffe4e1 2px, transparent 2px);
+            background-size: 30px 30px;
+            font-family: 'Quicksand', 'Arial Rounded MT Bold', sans-serif;
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            gap: 50px;
+            gap: 60px;
             position: relative;
             z-index: 10;
             padding: 20px;
@@ -80,28 +82,28 @@
 
         /* KHUNG THIỆP BÊN TRÁI */
         .greeting-card {
-            background: #fdfbf7;
-            border: 8px double #e8d5c4;
-            border-radius: 15px;
+            background: #ffffff;
+            border: 3px solid #ffb6c1; /* Viền hồng pastel */
+            border-radius: 25px; /* Góc bo tròn kẹo ngọt */
             padding: 40px 30px;
-            width: 400px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1), inset 0 0 20px rgba(0,0,0,0.02);
+            width: 420px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2); /* Bóng đổ màu hồng mờ */
             text-align: center;
             z-index: 5;
             position: relative;
         }
         .greeting-card h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: #b5835a;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            color: #ff69b4; /* Hồng kẹo dẻo */
+            margin-bottom: 25px;
+            line-height: 1.3;
         }
         .greeting-card p {
-            font-size: 1.3rem;
-            color: #4a4a4a;
+            font-size: 1.25rem;
+            color: #555555;
             line-height: 1.6;
+            font-weight: 500;
         }
 
         /* KHUNG POLAROID BÊN PHẢI */
@@ -112,26 +114,29 @@
             z-index: 5;
         }
         .polaroid {
-            background: white;
+            background: #ffffff;
             padding: 15px 15px 40px 15px;
-            box-shadow: 0 15px 25px rgba(0,0,0,0.15), 0 5px 10px rgba(0,0,0,0.05);
-            transform: rotate(2deg);
+            border: 2px solid #ffe4e1;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(255, 192, 203, 0.4);
+            transform: rotate(3deg);
             position: relative;
             margin-bottom: 30px;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.3s ease;
         }
-        .polaroid:hover { transform: rotate(0deg) scale(1.03); }
+        .polaroid:hover { transform: rotate(0deg) scale(1.02); }
         
         .tape {
             position: absolute;
-            top: -15px;
+            top: -12px;
             left: 50%;
             transform: translateX(-50%) rotate(-2deg);
-            width: 120px;
-            height: 35px;
-            background-color: rgba(244, 164, 179, 0.6);
-            border: 1px dashed rgba(255, 255, 255, 0.5);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100px;
+            height: 30px;
+            background-color: #ffb6c1;
+            opacity: 0.8;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             z-index: 6;
         }
 
@@ -139,20 +144,21 @@
             width: 280px;
             height: 280px;
             object-fit: cover;
-            border: 1px solid #eee;
+            border-radius: 8px;
+            border: 1px solid #fff0f5;
         }
 
         .invite-text {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 20px;
-            font-weight: bold;
+            font-size: 1.4rem;
+            color: #ff69b4;
+            margin-bottom: 25px;
+            font-weight: 700;
             text-align: center;
             max-width: 400px;
             line-height: 1.4;
         }
 
-        /* NÚT BẤM 3D */
+        /* NÚT BẤM KẸO NGỌT */
         .btn-container {
             display: flex;
             gap: 20px;
@@ -162,32 +168,32 @@
             height: 60px;
         }
         .btn {
-            font-family: 'Pangolin', cursive;
+            font-family: 'Quicksand', sans-serif;
             font-size: 1.2rem;
-            padding: 12px 30px;
+            padding: 12px 35px;
             border: none;
-            border-radius: 8px;
+            border-radius: 50px; /* Dạng viên thuốc/viên kẹo */
             cursor: pointer;
-            font-weight: bold;
-            transition: all 0.1s;
+            font-weight: 700;
+            transition: all 0.2s;
         }
         #btn-yes {
-            background-color: #ff7b9c;
+            background: linear-gradient(135deg, #ffb6c1, #ff69b4);
             color: white;
-            box-shadow: 0 6px 0 #d95374, 0 10px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 15px rgba(255, 105, 180, 0.3);
         }
-        #btn-yes:active {
-            transform: translateY(6px);
-            box-shadow: 0 0 0 #d95374, 0 2px 5px rgba(0,0,0,0.1);
+        #btn-yes:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
         }
         #btn-no {
-            background-color: #a0a0a0;
-            color: white;
-            box-shadow: 0 6px 0 #7a7a7a, 0 10px 15px rgba(0,0,0,0.1);
+            background-color: #f0f0f0;
+            color: #888;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             position: absolute; 
         }
 
-        /* HIỆU ỨNG TRANG TRÍ RƠI */
+        /* HIỆU ỨNG TRANG TRÍ RƠI (KẸO) */
         .falling-item {
             position: absolute;
             top: -10vh;
@@ -195,18 +201,15 @@
             z-index: 2;
             user-select: none;
             pointer-events: none;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
         @keyframes fall {
             to { transform: translateY(110vh) rotate(360deg); }
         }
 
-        /* Responsive cho điện thoại (Chuyển thành 1 cột dọc) */
+        /* Responsive cho điện thoại */
         @media (max-width: 800px) {
-            #real-page { flex-direction: column; overflow-y: auto; justify-content: flex-start; padding-top: 50px; }
-            .greeting-card { width: 90%; margin-bottom: 30px; }
-            .polaroid { margin-bottom: 20px; }
-            .btn-container { margin-bottom: 50px; }
+            #real-page { flex-direction: column; overflow-y: auto; justify-content: flex-start; padding-top: 50px; gap: 30px; }
+            .greeting-card { width: 90%; }
         }
     </style>
 </head>
@@ -241,8 +244,8 @@
         
         <!-- BÊN TRÁI: THIỆP CHÚC MỪNG -->
         <div class="greeting-card">
-            <h1>Happy Birthday,<br>Hà Trang! ✨</h1>
-            <p>"á nhon bà dà, chúc bà tủi mới xinh đẹp, nhèo tèng, nhèo trải nghiệm và luôn có những người yêu thương bà thật lòng 🌸🍰"</p>
+            <h1>Happy Birthday,<br>Hà Trang! 🎂</h1>
+            <p>"á nhon bà dà, chúc bà tủi mới xinh đẹp, nhèo tèng, nhèo trải nghiệm và luôn có những người yêu thương bà thật lòng 🎀✨"</p>
         </div>
 
         <!-- BÊN PHẢI: POLAROID & NÚT BẤM -->
@@ -271,25 +274,23 @@
         function revealSurprise(e) {
             e.preventDefault(); 
             document.getElementById('fake-page').style.display = 'none';
-            // Dùng display flex để hiển thị bố cục 2 cột
             document.getElementById('real-page').style.display = 'flex';
             document.title = "Đi với tui nhé bà!!!"; 
             
             effectInterval = setInterval(createFallingItem, 400);
         }
 
-        // Tạo hiệu ứng rơi chân thực hơn (Cánh hoa, nơ, lấp lánh)
-        const items = ['🥀', '🎀', '✨', '🍂', '🌸'];
+        // Tạo hiệu ứng kẹo rơi
+        const items = ['🍬', '🍭', '🍡', '🌸', '🎀', '🧁'];
         function createFallingItem() {
             const item = document.createElement('div');
             item.classList.add('falling-item');
             item.innerText = items[Math.floor(Math.random() * items.length)];
             
-            // Random kích thước từ 15px đến 30px
-            const size = Math.random() * 15 + 15; 
+            const size = Math.random() * 15 + 20; 
             item.style.fontSize = size + 'px';
             item.style.left = Math.random() * 100 + 'vw';
-            item.style.animationDuration = Math.random() * 4 + 4 + 's'; 
+            item.style.animationDuration = Math.random() * 3 + 4 + 's'; 
             
             document.getElementById('real-page').appendChild(item);
             setTimeout(() => { item.remove(); }, 8000);
