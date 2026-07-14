@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kinh-te-phat-trien-FTU/Thuyết minh môn học.md at main</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Import font chữ Fredoka (Không chân, tròn, cute Y2K) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* --- CÀI ĐẶT CHUNG --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { overflow: hidden; background-color: #f6f8fa; }
 
@@ -18,10 +20,7 @@
             color: #24292f;
         }
         .gh-header { background-color: #24292f; padding: 16px; display: flex; align-items: center; }
-        .gh-search {
-            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 6px; padding: 5px 12px; color: white; font-size: 14px; width: 300px; margin-left: 16px;
-        }
+        .gh-search { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; padding: 5px 12px; color: white; font-size: 14px; width: 300px; margin-left: 16px; }
         .gh-body { padding: 24px; max-width: 1012px; margin: 0 auto; width: 100%; }
         .gh-repo-title { font-size: 20px; color: #0969da; margin-bottom: 20px; font-weight: 600; }
         .gh-file-box { border: 1px solid #d0d7de; border-radius: 6px; background: #ffffff; margin-top: 16px; }
@@ -30,131 +29,139 @@
         .gh-link { color: #0969da; text-decoration: none; cursor: pointer; font-family: monospace; font-size: 16px; }
         .gh-link:hover { text-decoration: underline; }
 
-        /* --- LỚP 2: GIAO DIỆN GLASSMORPHISM --- */
+        /* --- LỚP 2: GIAO DIỆN THẬT (Y2K CUTE) --- */
         #real-page {
             display: none; 
             height: 100vh;
-            /* Nền gradient chuyển động cực mượt */
-            background: linear-gradient(-45deg, #fff0f5, #ffffff, #ffe4e1, #ffc0cb);
-            background-size: 400% 400%;
-            animation: gradientBG 12s ease infinite;
-            font-family: 'Quicksand', sans-serif;
+            /* Nền caro Hồng - Tím pastel chuẩn Y2K */
+            background-color: #ffc4d9;
+            background-image: 
+                linear-gradient(45deg, #e0bbf0 25%, transparent 25%, transparent 75%, #e0bbf0 75%, #e0bbf0), 
+                linear-gradient(45deg, #e0bbf0 25%, transparent 25%, transparent 75%, #e0bbf0 75%, #e0bbf0);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            font-family: 'Fredoka', sans-serif; /* Font không chân */
+            flex-direction: row;
             align-items: center;
             justify-content: center;
+            gap: 50px;
             position: relative;
             z-index: 10;
             padding: 20px;
         }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
 
-        /* KHUNG KÍNH CHỨA TOÀN BỘ NỘI DUNG */
-        .glass-container {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 40px;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 24px;
-            padding: 50px;
-            box-shadow: 0 8px 32px 0 rgba(255, 182, 193, 0.3);
+        /* KHUNG THIỆP Y2K (Neo-brutalism) */
+        .y2k-card {
+            background: #ffffff;
+            border: 4px solid #000000;
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 450px;
+            /* Bóng đổ khối cứng màu Tím đậm đặc trưng */
+            box-shadow: 8px 8px 0px #a26dd4;
+            text-align: center;
             z-index: 5;
-            max-width: 900px;
+            position: relative;
         }
-
-        /* BÊN TRÁI: THIỆP */
-        .text-section {
-            flex: 1;
-            text-align: left;
-        }
-        .text-section h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.8rem;
-            color: #ff4d6d;
+        .y2k-card h1 {
+            font-size: 3rem;
+            color: #ff1493; /* Deep Pink */
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(255, 77, 109, 0.1);
+            line-height: 1.2;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px #000; /* Viền chữ đen */
+            letter-spacing: 2px;
         }
-        .text-section p {
-            font-size: 1.2rem;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            font-weight: 500;
-        }
-        .invite-text {
+        .y2k-card p {
             font-size: 1.3rem;
-            color: #ff4d6d;
-            font-weight: 700;
-            margin-bottom: 25px;
+            color: #000;
+            line-height: 1.5;
+            font-weight: 600;
+            margin-bottom: 20px;
         }
 
-        /* NÚT BẤM HIỆN ĐẠI */
+        /* KHUNG ẢNH Y2K */
+        .y2k-photo {
+            background: #ffffff;
+            padding: 15px;
+            border: 4px solid #000;
+            border-radius: 15px;
+            box-shadow: -8px 8px 0px #ff69b4; /* Bóng đổ khối cứng màu hồng */
+            transform: rotate(3deg);
+            position: relative;
+            transition: transform 0.2s;
+            z-index: 5;
+        }
+        .y2k-photo:hover { transform: rotate(0deg) scale(1.05); }
+        .y2k-photo img {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #000;
+        }
+        
+        /* Sticker bướm trang trí */
+        .sticker {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 3rem;
+            filter: drop-shadow(2px 2px 0px #000);
+            z-index: 6;
+        }
+
+        .invite-text {
+            font-size: 1.5rem;
+            color: #000;
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.4;
+            background: #fff;
+            padding: 10px;
+            border: 3px solid #000;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        /* NÚT BẤM Y2K */
         .btn-container {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             position: relative;
-            height: 50px;
+            width: 100%;
+            justify-content: center;
+            height: 60px;
         }
         .btn {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 1.1rem;
-            padding: 0 30px;
-            height: 48px;
-            border: none;
-            border-radius: 24px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            padding: 12px 30px;
+            border: 3px solid #000;
+            border-radius: 30px;
             cursor: pointer;
             font-weight: 700;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-transform: uppercase;
+            transition: all 0.1s;
         }
         #btn-yes {
-            background: #ff4d6d;
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+            background-color: #00e5ff; /* Cyan */
+            color: #000;
+            box-shadow: 4px 4px 0px #000;
         }
-        #btn-yes:hover {
-            background: #ff758f;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 77, 109, 0.6);
+        #btn-yes:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px #000;
         }
         #btn-no {
-            background: rgba(255, 255, 255, 0.6);
-            color: #666;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            position: absolute;
+            background-color: #ffed4a; /* Yellow */
+            color: #000;
+            box-shadow: 4px 4px 0px #000;
+            position: absolute; 
         }
 
-        /* BÊN PHẢI: POLAROID TỐI GIẢN */
-        .polaroid-section {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-        .polaroid {
-            background: white;
-            padding: 12px 12px 35px 12px;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            transform: rotate(2deg);
-            transition: transform 0.4s ease;
-        }
-        .polaroid:hover { transform: rotate(-1deg) scale(1.02); }
-        .polaroid img {
-            width: 260px;
-            height: 260px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        /* VẬT THỂ RƠI LẤP LÁNH */
+        /* VẬT THỂ RƠI (Y2K ICONS) */
         .falling-item {
             position: absolute;
             top: -10vh;
@@ -162,21 +169,21 @@
             z-index: 2;
             user-select: none;
             pointer-events: none;
-            opacity: 0.7;
+            filter: drop-shadow(2px 2px 0px #000);
         }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-        /* ĐIỆN THOẠI */
+        /* Responsive */
         @media (max-width: 850px) {
-            .glass-container { flex-direction: column-reverse; padding: 30px; text-align: center; gap: 20px; margin-top: 50px;}
-            .text-section { text-align: center; }
-            .btn-container { justify-content: center; }
+            #real-page { flex-direction: column; overflow-y: auto; justify-content: flex-start; padding-top: 50px; gap: 30px; }
+            .y2k-card { width: 90%; }
         }
     </style>
 </head>
 <body>
 
     <div id="fake-page">
+        <!-- Header GitHub... -->
         <div class="gh-header">
             <svg height="32" viewBox="0 0 16 16" version="1.1" width="32" fill="white">
                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
@@ -198,26 +205,23 @@
     </div>
 
     <div id="real-page">
-        <div class="glass-container">
-            <div class="text-section">
-                <h1>Happy Birthday,<br>Hà Trang! ✨</h1>
-                <p> Á nhon bà dà, chúc bà tủi mới xinh đẹp, nhèo tèng, nhèo trải nghiệm và luôn có những người yêu thương bà thật lòng 🌸 </p>
-                
-                <div class="invite-text">
-                    Thy mời Hà Chang 1 bủi cà phê nói chuyện xúng xính áo quần chụp ảnh, đi cùng Thy nhé? (•◡•)
-                </div>
-                
-                <div class="btn-container">
-                    <button class="btn" id="btn-yes" onclick="alert('Đã chốt kèo! Lên đồ thôiii 💖')">Có (,,>﹏<,,)</button>
-                    <button class="btn" id="btn-no">Không (•_•)</button>
-                </div>
+        <div class="y2k-card">
+            <h1>HBD<br>Hà Trang!</h1>
+            <p>"á nhon bà dà, chúc bà tủi mới xinh đẹp, nhèo tèng, nhèo trải nghiệm và luôn có những người yêu thương bà thật lòng 🎀✨"</p>
+            <div class="invite-text">
+                Thy mời Hà Chang 1 bủi cà phê nói chuyện xúng xính áo quần chụp ảnh, đi cùng Thy nhé? (•◡•)
             </div>
+            <div class="btn-container">
+                <button class="btn" id="btn-yes" onclick="alert('Đã chốt kèo! Lên đồ thôiii 💖')">CÓ NHA</button>
+                <button class="btn" id="btn-no">CHÊ</button>
+            </div>
+        </div>
 
-            <div class="polaroid-section">
-                <div class="polaroid">
-                    <img src="https://github.com/onnlymintt/kinhtephattrien/blob/0a0ed06b861a87748037bfe36804fd2bd45f940f/fxn%202025-02-04%20160332.307.JPG" alt="Ảnh Hà Trang" onerror="this.onerror=null; this.src='https://github.com/onnlymintt/kinhtephattrien/blob/0a0ed06b861a87748037bfe36804fd2bd45f940f/fxn%202025-02-04%20160332.307.JPG';">
-                </div>
-            </div>
+        <div class="y2k-photo">
+            <div class="sticker">🦋</div>
+            <!-- ĐÃ CHÈN CHÍNH XÁC TÊN FILE BẠN UPLOAD LÊN GITHUB -->
+            <!-- Dùng %20 để thay thế cho khoảng trắng nhằm tránh lỗi đường dẫn -->
+            <img src="fxn%202025-02-04%20160332.307.JPG" alt="Ảnh Hà Trang">
         </div>
     </div>
 
@@ -230,44 +234,39 @@
             document.getElementById('real-page').style.display = 'flex';
             document.title = "Đi với tui nhé bà!!!"; 
             
-            effectInterval = setInterval(createFallingItem, 500);
+            effectInterval = setInterval(createFallingItem, 400);
         }
 
-        const items = ['✨', '🌸', '🤍', '🎀'];
+        // Icon phong cách Y2K
+        const items = ['💿', '🦋', '🌟', '🍒', '💖', '🎧'];
         function createFallingItem() {
             const item = document.createElement('div');
             item.classList.add('falling-item');
             item.innerText = items[Math.floor(Math.random() * items.length)];
             
-            const size = Math.random() * 10 + 15; 
+            const size = Math.random() * 20 + 25; 
             item.style.fontSize = size + 'px';
             item.style.left = Math.random() * 100 + 'vw';
-            item.style.animationDuration = Math.random() * 4 + 4 + 's'; 
+            item.style.animationDuration = Math.random() * 3 + 3 + 's'; 
             
             document.getElementById('real-page').appendChild(item);
-            setTimeout(() => { item.remove(); }, 8000);
+            setTimeout(() => { item.remove(); }, 6000);
         }
 
         const btnNo = document.getElementById('btn-no');
-        const glassContainer = document.querySelector('.glass-container');
         
         function moveButton() {
-            // Đặt nút chạy giới hạn trong khung kính để không bị văng lung tung mất thẩm mỹ
-            const safeWidth = glassContainer.offsetWidth - btnNo.offsetWidth - 20;
-            const safeHeight = glassContainer.offsetHeight - btnNo.offsetHeight - 20;
-
+            btnNo.style.position = 'fixed'; 
+            const safeWidth = window.innerWidth - btnNo.offsetWidth - 20;
+            const safeHeight = window.innerHeight - btnNo.offsetHeight - 20;
             const randomX = Math.max(10, Math.floor(Math.random() * safeWidth));
             const randomY = Math.max(10, Math.floor(Math.random() * safeHeight));
-
             btnNo.style.left = randomX + 'px';
             btnNo.style.top = randomY + 'px';
         }
 
         btnNo.addEventListener('mouseover', moveButton);
-        btnNo.addEventListener('touchstart', function(e) {
-            e.preventDefault(); 
-            moveButton();
-        }, {passive: false});
+        btnNo.addEventListener('touchstart', function(e) { e.preventDefault(); moveButton(); }, {passive: false});
         btnNo.addEventListener('focus', moveButton);
     </script>
 </body>
